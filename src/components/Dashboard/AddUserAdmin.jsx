@@ -62,6 +62,7 @@ export default function AddUserAdmin() {
         if (!res.ok) {
           throw new Error(data.error || 'Failed to set admin');
         }
+        await getAuth().currentUser.getIdToken(true);
         await fetchUsers();
         toast.success('Admin privileges granted successfully');
       } catch (err) {
@@ -74,6 +75,12 @@ export default function AddUserAdmin() {
   
     const removeAdmin = async (uid) => {
       try {
+        const currentUser = getAuth().currentUser;
+        if (currentUser.uid === uid) {
+          alert('You cannot remove your own admin privileges');
+          return;
+        }
+
         setProcessingUid(uid);
         setError(null);
         const token = await getAuthToken();
@@ -89,6 +96,7 @@ export default function AddUserAdmin() {
         if (!res.ok) {
           throw new Error(data.error || 'Failed to remove admin');
         }
+        await getAuth().currentUser.getIdToken(true);
         await fetchUsers();
         toast.success('Admin privileges removed successfully');
       } catch (err) {

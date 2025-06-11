@@ -64,10 +64,7 @@ export default function Dashboard() {
   // verifyAdmin
   useEffect(() => {
     const verifyAdmin = async () => {
-      if (!currentUser) {
-        router.replace('/');
-        return;
-      }
+      if (!currentUser) return;
 
       const token = await currentUser.getIdToken();
 
