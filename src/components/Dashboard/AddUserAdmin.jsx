@@ -135,34 +135,34 @@ export default function AddUserAdmin() {
     }
 
     return (
-        <div className="p-4 max-w-2xl mx-auto">
+        <div className="p-2 sm:p-4 max-w-2xl mx-auto">
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
-                <div className="bg-gradient-to-r from-blue-500 to-blue-600 p-4">
-                    <h1 className="text-xl font-semibold text-white">User Management</h1>
-                    <p className="text-blue-100 text-sm mt-1">Manage admin privileges for users</p>
+                <div className="bg-gradient-to-r from-blue-500 to-blue-600 p-3 sm:p-4">
+                    <h1 className="text-lg sm:text-xl font-semibold text-white">User Management</h1>
+                    <p className="text-blue-100 text-xs sm:text-sm mt-1">Manage admin privileges for users</p>
                 </div>
                 
-                <div className="p-4">
-                    <div className="grid gap-4">
+                <div className="p-2 sm:p-4">
+                    <div className="grid gap-3 sm:gap-4">
                         {users.map(user => (
-                            <div key={user.uid} className="bg-gray-50 rounded-lg p-4 border border-gray-200 hover:border-blue-200 transition-colors">
-                                <div className="flex items-start justify-between">
+                            <div key={user.uid} className="bg-gray-50 rounded-lg p-3 sm:p-4 border border-gray-200 hover:border-blue-200 transition-colors">
+                                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 sm:gap-4">
                                     <div className="space-y-2">
                                         <div className="flex items-center space-x-2">
-                                            <User className="w-5 h-5 text-gray-400" />
-                                            <p className="text-gray-600"><span className="font-medium">UID:</span> {user.uid}</p>
+                                            <User className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
+                                            <p className="text-sm sm:text-base text-gray-600"><span className="font-medium">UID:</span> {user.uid}</p>
                                         </div>
                                         <div className="flex items-center space-x-2">
-                                            <Mail className="w-5 h-5 text-gray-400" />
-                                            <p className="text-gray-600"><span className="font-medium">Email:</span> {user.email}</p>
+                                            <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
+                                            <p className="text-sm sm:text-base text-gray-600"><span className="font-medium">Email:</span> {user.email}</p>
                                         </div>
                                         <div className="flex items-center space-x-2">
                                             {user.isAdmin ? (
-                                                <ShieldCheck className="w-5 h-5 text-green-500" />
+                                                <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 text-green-500" />
                                             ) : (
-                                                <Shield className="w-5 h-5 text-gray-400" />
+                                                <Shield className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
                                             )}
-                                            <p className="text-gray-600">
+                                            <p className="text-sm sm:text-base text-gray-600">
                                                 <span className="font-medium">Status:</span>
                                                 <span className={`ml-2 px-2 py-1 rounded-full text-xs ${
                                                     user.isAdmin 
@@ -175,12 +175,12 @@ export default function AddUserAdmin() {
                                         </div>
                                     </div>
                                     
-                                    <div className="flex-shrink-0">
+                                    <div className="flex-shrink-0 w-full sm:w-auto">
                                         {user.isAdmin ? (
                                             <button
                                                 onClick={() => removeAdmin(user.uid)}
                                                 disabled={processingUid === user.uid}
-                                                className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-colors ${
+                                                className={`w-full sm:w-auto flex items-center justify-center space-x-2 px-3 sm:px-4 py-2 rounded-lg transition-colors ${
                                                     processingUid === user.uid
                                                         ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
                                                         : 'bg-red-100 text-red-600 hover:bg-red-200'
@@ -188,13 +188,13 @@ export default function AddUserAdmin() {
                                             >
                                                 {processingUid === user.uid ? (
                                                     <>
-                                                        <Loader2 className="w-5 h-5 animate-spin" />
-                                                        <span>Processing...</span>
+                                                        <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 animate-spin" />
+                                                        <span className="text-sm sm:text-base">Processing...</span>
                                                     </>
                                                 ) : (
                                                     <>
-                                                        <ShieldX className="w-5 h-5" />
-                                                        <span>Remove Admin</span>
+                                                        <ShieldX className="w-4 h-4 sm:w-5 sm:h-5" />
+                                                        <span className="text-sm sm:text-base">Remove Admin</span>
                                                     </>
                                                 )}
                                             </button>
@@ -202,7 +202,7 @@ export default function AddUserAdmin() {
                                             <button
                                                 onClick={() => setAdmin(user.uid)}
                                                 disabled={processingUid === user.uid}
-                                                className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-colors ${
+                                                className={`w-full sm:w-auto flex items-center justify-center space-x-2 px-3 sm:px-4 py-2 rounded-lg transition-colors ${
                                                     processingUid === user.uid
                                                         ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
                                                         : 'bg-green-100 text-green-600 hover:bg-green-200'
@@ -210,13 +210,13 @@ export default function AddUserAdmin() {
                                             >
                                                 {processingUid === user.uid ? (
                                                     <>
-                                                        <Loader2 className="w-5 h-5 animate-spin" />
-                                                        <span>Processing...</span>
+                                                        <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 animate-spin" />
+                                                        <span className="text-sm sm:text-base">Processing...</span>
                                                     </>
                                                 ) : (
                                                     <>
-                                                        <ShieldCheck className="w-5 h-5" />
-                                                        <span>Make Admin</span>
+                                                        <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5" />
+                                                        <span className="text-sm sm:text-base">Make Admin</span>
                                                     </>
                                                 )}
                                             </button>
